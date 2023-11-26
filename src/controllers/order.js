@@ -1,4 +1,4 @@
-const { order: orderModel, user: userModel } = require('../../models')
+const { order: orderModel, user: userModel, cart: cartModel, order_item: orderItemModel, item: itemModel } = require('../../models')
 const { uploadToCloudinary } = require('../utils/upload')
 const { imageValidation } = require('../validations/image')
 const { makeOrderScheme } = require('../validations/order')
@@ -15,8 +15,33 @@ exports.makeOrder = async (req, res, next) => {
             total,
         })
 
+        const cartItems = await cartModel.findAll({
+            where: {
+                user_id: req.userId
+            }
+        })
+
+        const dataOrderItem = []
+        cartItems.map(item => {
+            dataOrderItem.push({
+                order_id: order.id,
+                qty: item.dataValues.qty,
+                item_id: item.dataValues.item_id,
+            })
+        })
+
+        const orderItem = await orderItemModel.bulkCreate(dataOrderItem)
+        await cartModel.destroy({
+            where: {
+                user_id: req.userId
+            }
+        })
+
         res.status(200).send({
-            message: 'Make order success'
+            message: 'Make order success',
+            data: {
+                order_id: order.id
+            }
         })
     } catch (error) {
         next(error)
@@ -41,7 +66,7 @@ exports.getOrders = async (req, res, next) => {
                     as: 'user',
                     attributes: ['username']
                 },
-                attributes: ['createdAt', 'total', 'status']
+                attributes: ['id', 'createdAt', 'total', 'status'],
             })
         }
 
@@ -49,6 +74,51 @@ exports.getOrders = async (req, res, next) => {
             data: orders
         })
 
+    } catch (error) {
+        next(error)
+    }
+}
+
+exports.getOrderById = async (req, res, next) => {
+    try {
+        const order = await orderModel.findByPk(req.params.id, {
+            include: [
+                {
+                    model: userModel,
+                    as: 'user',
+                    attributes: ['username']
+                },
+                {
+                    include: {
+                        model: itemModel,
+                        as: 'item',
+                        attributes: ['name', 'price']
+                    },
+                    model: orderItemModel,
+                    as: 'order_item',
+                    attributes: ['id','qty']
+                },
+            ],
+            // include: {
+            //     model: userModel,
+            //     as: 'user',
+            //     attributes: ['username']
+            // },
+            // include: {
+            //     include: {
+            //         model: itemModel,
+            //         as: 'item',
+            //         attributes: ['name', 'price']
+            //     },
+            //     model: orderItemModel,
+            //     as: 'order_item',
+            //     attributes: ['qty']
+            // },
+            attributes: ['id', 'createdAt', 'total', 'status', 'payment_proof']
+        })
+        res.status(200).send({
+            data: order
+        })
     } catch (error) {
         next(error)
     }

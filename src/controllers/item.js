@@ -34,13 +34,15 @@ exports.getAllItem = async (req, res, next) => {
             limit: parseInt(perPage),
             order: [['id', 'ASC']]
         })
+        const totalData = await itemModel.count()
         result = result.map(item => ({
             ...item.dataValues,
             description: item.dataValues.description.substring(0, 50)
         }))
 
         res.status(200).send({
-            data: result
+            data: result,
+            total_data: totalData,
         })
 
     } catch (error) {

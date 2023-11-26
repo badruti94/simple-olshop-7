@@ -14,6 +14,10 @@ module.exports = (sequelize, DataTypes) => {
       order.belongsTo(models.user,{
         as: 'user',
         foreignKey: 'user_id'
+      }),
+      order.hasMany(models.order_item, {
+        as: 'order_item',
+        foreignKey: 'order_id'
       })
     }
   }
