@@ -19,11 +19,12 @@ app.get('/v1/tes', mustRole('all'), (req, res) => {
 })
 
 app.use((error, req, res, next) => {
-    const errorCode = error.errorCode || 500
+    let errorCode = error.errorCode || 500
     let message = error.message
     const data = error.data
 
     if (error.name === 'SequelizeUniqueConstraintError') {
+        errorCode = 400
         message = error.errors[0].message
     }
 
