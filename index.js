@@ -26,6 +26,9 @@ app.use((error, req, res, next) => {
     if (error.name === 'SequelizeUniqueConstraintError') {
         errorCode = 400
         message = error.errors[0].message
+    }else if(error.name === 'SequelizeForeignKeyConstraintError'){
+        errorCode = 400
+        message = 'Item idak bisa dihapus karena telah dimasukan ke keranjang atau dipesan oleh pembeli'
     }
 
     res.status(errorCode).send({ message, data })

@@ -61,6 +61,17 @@ exports.getItemById = async (req, res, next) => {
     }
 }
 
+exports.getItemStockById = async (req, res, next) => {
+    try {
+        const item = await itemModel.findByPk(req.params.id)
+        res.status(200).send({
+            data: item.stock
+        })
+    } catch (error) {
+        next(error)
+    }
+}
+
 exports.updateItem = async (req, res, next) => {
     try {
         const { error } = itemScheme.validate(req.body)

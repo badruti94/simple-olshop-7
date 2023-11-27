@@ -7,6 +7,7 @@ const {mustRole} = require('../middlewares/auth')
 router.post('/', mustRole('admin'), itemController.createItem)
 router.get('/', itemController.getAllItem)
 router.get('/:id', itemController.getItemById)
+router.get('/:id/stock', itemController.getItemStockById)
 router.put('/:id', itemController.updateItem)
 router.delete('/:id', itemController.deleteItem)
 
