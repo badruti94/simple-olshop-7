@@ -20,10 +20,14 @@ app.get('/v1/tes', mustRole('all'), (req, res) => {
 
 app.use((error, req, res, next) => {
     const errorCode = error.errorCode || 500
-    const message = error.message
+    let message = error.message
     const data = error.data
 
-    res.status(errorCode).send({message, data})
+    if (error.name === 'SequelizeUniqueConstraintError') {
+        message = error.errors[0].message
+    }
+
+    res.status(errorCode).send({ message, data })
 })
 
 const port = process.env.PORT || 4000
