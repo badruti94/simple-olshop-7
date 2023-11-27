@@ -11,7 +11,7 @@ exports.addToCart = async (req, res, next) => {
             error.message = 'Maaf, stok untuk item ini sedang kosong. Silakan coba pesan kembali nanti.'
             throw error
         }
-        const result = await cartModel.findOrCreate({
+        const [cart, created] = await cartModel.findOrCreate({
             where: {
                 user_id: req.userId,
                 item_id,
@@ -21,13 +21,15 @@ exports.addToCart = async (req, res, next) => {
             }
         })
 
-        await itemModel.increment({
-            stock: -1
-        }, {
-            where: {
-                id: item_id
-            }
-        })
+        if (created) {
+            await itemModel.increment({
+                stock: -1
+            }, {
+                where: {
+                    id: item_id
+                }
+            })
+        }
 
         res.status(201).send({
             message: 'Add to cart success'
