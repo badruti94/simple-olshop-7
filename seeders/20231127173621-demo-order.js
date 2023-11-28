@@ -17,7 +17,7 @@ module.exports = {
       orders.push({
         total: 1000,
         user_id: 2,
-        createdAt: new Date(),
+        createdAt: new Date(new Date().getTime() + parseInt(`${i}000`)),
         updatedAt: new Date(),
       })
     }

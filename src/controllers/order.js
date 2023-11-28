@@ -50,28 +50,43 @@ exports.makeOrder = async (req, res, next) => {
 
 exports.getOrders = async (req, res, next) => {
     try {
+        const { page = 1, perPage = 10 } = req.query
+
         let orders;
-        console.log(req.role);
+        let totalData;
+        const queryObject = {
+            attributes: ['id', 'createdAt', 'total', 'status'],
+            offset: (parseInt(page) - 1) * parseInt(perPage),
+            limit: parseInt(perPage),
+            order: [['createdAt', 'DESC']]
+        }
         if (req.role === 'user') {
             orders = await orderModel.findAll({
-                attributes: ['id', 'createdAt', 'total', 'status'],
+                ...queryObject,
                 where: {
                     user_id: req.userId
-                }
+                },
+            })
+            totalData = await orderModel.count({
+                where: {
+                    user_id: req.userId
+                },
             })
         } else {
             orders = await orderModel.findAll({
+                ...queryObject,
                 include: {
                     model: userModel,
                     as: 'user',
                     attributes: ['username']
                 },
-                attributes: ['id', 'createdAt', 'total', 'status'],
             })
+            totalData = await orderModel.count()
         }
 
         res.status(200).send({
-            data: orders
+            data: orders,
+            total_data: totalData,
         })
 
     } catch (error) {
@@ -96,7 +111,7 @@ exports.getOrderById = async (req, res, next) => {
                     },
                     model: orderItemModel,
                     as: 'order_item',
-                    attributes: ['id','qty']
+                    attributes: ['id', 'qty']
                 },
             ],
             // include: {
