@@ -1,4 +1,5 @@
 'use strict';
+const items = require('./data-item.json')
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
@@ -12,17 +13,8 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-    const orders = []
-    for (let i = 1; i <= 100; i++) {
-      orders.push({
-        total: 1000,
-        user_id: 2,
-        createdAt: new Date(new Date().getTime() + parseInt(`${i}000`)),
-        updatedAt: new Date(),
-      })
-    }
+    await queryInterface.bulkInsert('items', items, {});
 
-    // await queryInterface.bulkInsert('orders', orders)
   },
 
   async down(queryInterface, Sequelize) {
@@ -32,6 +24,7 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    await queryInterface.bulkDelete('orders', null, {});
+    await queryInterface.bulkDelete('items', null, {});
+    
   }
 };

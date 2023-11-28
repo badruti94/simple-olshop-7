@@ -1,0 +1,72 @@
+[
+    {
+        "name": "Buku Tulis Bergambar Motif Alam",
+        "price": 2000,
+        "stock": 100,
+        "description": "Buku tulis ini memiliki sampul yang menampilkan motif alam yang indah, memberikan sentuhan estetika pada setiap halamannya. Dengan kertas berkualitas tinggi, cocok untuk membuat catatan, sketsa, atau pemikiran kreatif Anda.",
+        "image": "https://res.cloudinary.com/dmzuc1ot0/image/upload/v1701102718/uploads/utjdfejabz7y9upfpiq4.jpg"
+    },
+    {
+        "name": "Garpu Stainless Steel Premium",
+        "price": 12000,
+        "stock": 100,
+        "description": "Garpu ini terbuat dari bahan stainless steel berkualitas tinggi yang tahan karat dan mudah dibersihkan. Desain ergonomisnya memberikan kenyamanan saat digunakan, menjadikannya pilihan sempurna untuk penggunaan sehari-hari atau saat menyajikan hidangan istimewa.",
+        "image": "https://res.cloudinary.com/dmzuc1ot0/image/upload/v1701087061/uploads/n820oxyrrcynvzvu2cs6.jpg"
+    },
+    {
+        "name": "Gelas Kristal Berkilau",
+        "price": 10000,
+        "stock": 100,
+        "description": "Gelas elegan ini terbuat dari kristal berkualitas tinggi yang memberikan kilau indah ketika cahaya bersinar melaluinya. Desainnya yang ergonomis memberikan kenyamanan saat digenggam, membuat momen minum Anda lebih istimewa.",
+        "image": "https://res.cloudinary.com/dmzuc1ot0/image/upload/v1701163776/uploads/bvbyqdqaf2sz3spz5l30.jpg "
+    },
+    {
+        "name": "Jam Dinding Vintage Kayu",
+        "price": 50000,
+        "stock": 100,
+        "description": "Jam dinding ini menggabungkan keindahan vintage dengan sentuhan modern. Terbuat dari kayu berkualitas tinggi, dengan desain dial yang jelas dan angka romawi, menjadikannya tidak hanya sebagai alat pemantau waktu, tetapi juga sebagai dekorasi yang menawan di ruangan Anda.",
+        "image": "https://res.cloudinary.com/dmzuc1ot0/image/upload/v1701163798/uploads/xyj3sxaouvsybabgzksh.jpg"
+    },
+    {
+        "name": "Kertas HVS A4 Premium",
+        "price": 25000,
+        "stock": 100,
+        "description": "Kertas HVS berkualitas tinggi dengan ukuran standar A4. Cocok untuk pencetakan dokumen, tugas, atau proyek kreatif Anda. Ketebalan dan kehalusan kertas ini memberikan hasil cetakan yang tajam dan profesional.",
+        "image": "https://res.cloudinary.com/dmzuc1ot0/image/upload/v1701163820/uploads/xudspurmomvueulancpt.jpg"
+    },
+    {
+        "name": "Kursi Ergonomis Modern",
+        "price": 100000,
+        "stock": 100,
+        "description": "Kursi ini dirancang dengan desain ergonomis untuk memberikan kenyamanan maksimal. Dengan bahan polimer yang tahan lama dan rangka logam yang kokoh, kursi ini cocok untuk ruang kerja atau ruang tamu Anda.",
+        "image": "https://res.cloudinary.com/dmzuc1ot0/image/upload/v1701163837/uploads/ntxbnvz8gqen4dslzjko.jpg"
+    },
+    {
+        "name": "Meja Lipat Kayu Solid",
+        "price": 50000,
+        "stock": 100,
+        "description": "Meja lipat dengan konstruksi dari kayu solid yang tahan lama. Desainnya yang ringkas dan fungsional membuatnya ideal untuk ruang terbatas. Cocok untuk kegiatan belajar, bekerja, atau berkumpul.",
+        "image": "https://res.cloudinary.com/dmzuc1ot0/image/upload/v1701163861/uploads/jjidqxhqtzn582yqflmh.jpg"
+    },
+    {
+        "name": "Papan Tulis Magnetik Multifungsi",
+        "price": 150000,
+        "stock": 100,
+        "description": "Papan tulis dengan permukaan magnetik yang dapat digunakan untuk menempelkan catatan atau gambar. Dilengkapi dengan rak untuk tempat spidol dan penghapus, menjadikannya pilihan ideal untuk ruang kantor atau ruang belajar.",
+        "image": "https://res.cloudinary.com/dmzuc1ot0/image/upload/v1701163925/uploads/pb6tktqiny6zr93a8ajm.jpg"
+    },
+    {
+        "name": "Sepatu Lari Teknologi AirVent",
+        "price": 100000,
+        "stock": 100,
+        "description": "Sepatu lari inovatif dengan teknologi AirVent yang memberikan sirkulasi udara optimal, menjaga kaki tetap sejuk dan kering selama beraktivitas. Desain yang ringan dan sol yang responsif membuatnya nyaman untuk digunakan dalam berbagai aktivitas olahraga.",
+        "image": "https://res.cloudinary.com/dmzuc1ot0/image/upload/v1701163965/uploads/c901yhadqmex3w2nwbzf.jpg"
+    },
+    {
+        "name": "Tas Ransel Urban Traveller",
+        "price": 120000,
+        "stock": 100,
+        "description": "Tas ransel yang modis dan fungsional untuk kebutuhan sehari-hari. Terbuat dari bahan tahan air dengan banyak saku dan ruang penyimpanan, cocok untuk membawa laptop, buku, dan barang bawaan lainnya dengan gaya yang tetap trendy.",
+        "image": "https://res.cloudinary.com/dmzuc1ot0/image/upload/v1701163943/uploads/eb5ocn0bk8ntvkdtwg8m.jpg"
+    }
+]

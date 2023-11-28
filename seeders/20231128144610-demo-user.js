@@ -1,4 +1,6 @@
 'use strict';
+const bcrypt = require('bcrypt')
+let users = require('./data-user.json')
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
@@ -12,17 +14,16 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-    const orders = []
-    for (let i = 1; i <= 100; i++) {
-      orders.push({
-        total: 1000,
-        user_id: 2,
-        createdAt: new Date(new Date().getTime() + parseInt(`${i}000`)),
-        updatedAt: new Date(),
-      })
-    }
 
-    // await queryInterface.bulkInsert('orders', orders)
+    const salt = await bcrypt.genSalt(10)
+
+    users = await Promise.all(users.map(async (user) => {
+      const password = await bcrypt.hash(user.password, salt)
+      return { ...user, password }
+    }))
+
+    await queryInterface.bulkInsert('users', users, {});
+
   },
 
   async down(queryInterface, Sequelize) {
@@ -32,6 +33,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    await queryInterface.bulkDelete('orders', null, {});
+    await queryInterface.bulkDelete('users', null, {});
   }
 };
