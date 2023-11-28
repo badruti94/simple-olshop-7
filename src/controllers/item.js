@@ -1,3 +1,4 @@
+const { Op } = require('sequelize')
 const { item: itemModel } = require('../../models')
 const { uploadToCloudinary } = require('../utils/upload')
 const { imageValidation } = require('../validations/image')
@@ -27,18 +28,28 @@ exports.createItem = async (req, res, next) => {
 
 exports.getAllItem = async (req, res, next) => {
     try {
-        const { page = 1, perPage = 4 } = req.query
+        const { page = 1, perPage = 4, search = '' } = req.query
 
         let result = await itemModel.findAll({
+            attributes: {
+                exclude: ['createdAt', 'updatedAt', 'description'],
+            },
+            where: {
+                name: {
+                    [Op.iLike]: `%${search}%`
+                }
+            },
             offset: (parseInt(page) - 1) * parseInt(perPage),
             limit: parseInt(perPage),
             order: [['id', 'ASC']]
         })
-        const totalData = await itemModel.count()
-        result = result.map(item => ({
-            ...item.dataValues,
-            description: item.dataValues.description.substring(0, 50)
-        }))
+        const totalData = await itemModel.count({
+            where: {
+                name: {
+                    [Op.iLike]: `%${search}%`
+                }
+            },
+        })
 
         res.status(200).send({
             data: result,
