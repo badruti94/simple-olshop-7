@@ -1,5 +1,5 @@
 const { Op } = require('sequelize')
-const { item: itemModel } = require('../../models')
+const { item: itemModel, user: userModel } = require('../../models')
 const { uploadToCloudinary } = require('../utils/upload')
 const { imageValidation } = require('../validations/image')
 const { itemScheme } = require('../validations/item')
@@ -64,8 +64,16 @@ exports.getAllItem = async (req, res, next) => {
 exports.getItemById = async (req, res, next) => {
     try {
         const item = await itemModel.findByPk(req.params.id)
+        const admin = await userModel.findOne({
+            where: {
+                role: 'admin'
+            }
+        })
         res.status(200).send({
-            data: item
+            data: {
+                item,
+                no_admin: admin.phone_number
+            }
         })
     } catch (error) {
         next(error)
