@@ -49,7 +49,8 @@ exports.getCartData = async (req, res, next) => {
                 model: itemModel,
                 as: 'item',
                 attributes: ['name', 'price']
-            }
+            },
+            order: [['id', 'ASC']]
         })
 
         res.status(200).send({
