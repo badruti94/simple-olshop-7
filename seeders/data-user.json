@@ -16,14 +16,5 @@
         "address": "Perumahan Permata Hijau Blok D3/21, RT 08/RW 02, Desa Cendana, Kecamatan Depok, Jawa Barat, 16514",
         "password": "password",
         "role": "admin"
-    },
-    {
-        "username": "darmawan123",
-        "email": "darmawan123@gmail.com",
-        "name": "Darmawan Nugroho",
-        "phone_number": "089808980125",
-        "address": "Jalan Melur No. 33, RT 09/RW 03, Kelurahan Mekar Jaya, Kecamatan Bekasi Timur, Kota Bekasi, Jawa Barat, 17121",
-        "password": "password",
-        "role": "user"
     }
 ]
